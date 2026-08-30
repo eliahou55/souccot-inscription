@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin d'Inscription - Souccot 2026 Hôtel Millenium Charles de Gaulle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LOISIREL SOUCCOT 2026</h1>
+            <h2>HÔTEL MILLENIUM CHARLES DE GAULLE</h2>
+            <p class="subtitle">Bulletin d'Inscription - Séjour de Souccot</p>
+            <p class="dates">Du vendredi 25 au dimanche 27 septembre 2026</p>
+            <p class="hotel">Millennium Hotel Paris Charles de Gaulle - Roissy-en-France</p>
+        </header>
+
+        <form id="inscriptionForm" class="form-container">
+            <!-- Section 1: Informations de Contact -->
+            <section class="form-section contact-section">
+                <h3>Informations de Contact</h3>
+
+                <div class="contact-grid">
+                    <div class="form-group">
+                        <label for="nomContact">Nom *</label>
+                        <input type="text" id="nomContact" name="nomContact" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenomContact">Prénom *</label>
+                        <input type="text" id="prenomContact" name="prenomContact" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="portable">Téléphone</label>
+                        <input type="tel" id="portable" name="portable" placeholder="06 12 34 56 78">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailContact">Email *</label>
+                        <input type="email" id="emailContact" name="emailContact" placeholder="exemple@gmail.com" required>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Membres de la Famille -->
+            <section class="form-section">
+                <h3>Membres de la Famille</h3>
+                <p class="section-info">Saisissez les informations de chaque membre et sélectionnez sa catégorie - le tarif sera calculé automatiquement</p>
+
+                <div id="familyTableWrapper" class="family-table-wrapper">
+                    <table class="family-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Catégorie</th>
+                                <th>Tarif</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="familyTableBody">
+                            <!-- Les lignes seront ajoutées par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <button type="button" id="addMemberBtn" class="btn-add-member">+ Ajouter un membre</button>
+            </section>
+
+            <!-- Section 3: Notes -->
+            <section class="form-section">
+                <h3>Notes</h3>
+                <div class="form-group">
+                    <label for="notes">Notes additionnelles</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Laissez vos remarques ou demandes spéciales..."></textarea>
+                </div>
+            </section>
+
+            <!-- Section 4: Remise -->
+            <section class="form-section">
+                <h3>Remise ou Prix Spécial</h3>
+
+                <div class="remise-section">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="remiseCheck" name="remiseCheck">
+                        <label for="remiseCheck">Appliquer une remise ou prix spécial</label>
+                    </div>
+
+                    <div id="remiseOptions" style="display: none; margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="remiseAmount">Prix après remise (€)</label>
+                            <input type="number" id="remiseAmount" name="remiseAmount" placeholder="Ex: 1000" min="0" disabled>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section recap-section">
+                <h3>Récapitulatif du Devis</h3>
+
+                <div class="recap-container">
+                    <div class="recap-item">
+                        <span id="recapAdulteLabel">Adultes:</span>
+                        <span id="recapAdulte">0€</span>
+                    </div>
+                    <div class="recap-item">
+                        <span id="recapEnfantLabel">Enfants:</span>
+                        <span id="recapEnfant">0€</span>
+                    </div>
+                    <div class="recap-item">
+                        <span id="recapBebeLabel">Bébés:</span>
+                        <span id="recapBebe">0€</span>
+                    </div>
+                    <div class="recap-divider"></div>
+                    <div class="recap-item total">
+                        <span>TOTAL:</span>
+                        <span id="recapTotal">0€</span>
+                    </div>
+                    <div class="recap-item" id="recapRemise" style="display: none; color: #27ae60; font-weight: 600;"></div>
+
+                    <!-- Paiement intégral -->
+                    <div class="recap-item" style="margin-top:6px;">
+                        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;">
+                            <input type="checkbox" id="paiementIntegral" style="width:16px;height:16px;cursor:pointer;">
+                            <span style="color:#1a6b2f;">✅ Total réglé en intégralité</span>
+                        </label>
+                    </div>
+
+                    <div id="recapAcompteRow" class="recap-item">
+                        <span>Acompte 50%:</span>
+                        <span id="recapAcompte">0€</span>
+                    </div>
+                    <div id="recapSoldeRow" class="recap-item info">
+                        <span>Solde:</span>
+                        <span id="recapSolde">0€</span>
+                    </div>
+                    <div id="recapRegleRow" class="recap-item" style="display:none;">
+                        <span style="color:#1a6b2f;font-weight:700;">TOTAL RÉGLÉ :</span>
+                        <span id="recapRegle" style="color:#1a6b2f;font-weight:700;">0€</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Conditions -->
+            <section class="form-section conditions">
+                <h3>Conditions Générales</h3>
+                <div class="conditions-text">
+                    <p>✓ Annulation: Plus de 30 jours avant le départ - votre acompte sera retenu.</p>
+                    <p>✓ 15 jours avant le départ: 50% de la somme sera retenu.</p>
+                    <p>✓ Le montant de l'adhésion à Loisirél est inclus dans le prix du séjour.</p>
+                    <p>✓ Il est conseillé de souscrire une assurance rapatriement ou de vérifier les conditions de votre CB VISA OU MASTERCARD.</p>
+                    <p>✓ Tout voyage interrompu ou abrégé du fait du participant pour quelque cause que ce soit, ne donnera lieu à aucun remboursement.</p>
+                </div>
+            </section>
+
+            <!-- Boutons -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Soumettre l'Inscription</button>
+                <button type="reset" class="btn-reset">Réinitialiser</button>
+            </div>
+
+            <!-- Message de statut -->
+            <div id="statusMessage" class="status-message"></div>
+        </form>
+
+        <footer>
+            <p>ADRESSE HÔTEL: Millennium Hotel Paris Charles de Gaulle</p>
+            <p>2 Allée du Verger, 95700 Roissy-en-France, France</p>
+            <p>IBAN LOISIREL: FR76 1820 6002 1365 0425 2422 502 - AGRFRPP882</p>
+        </footer>
+    </div>
+
+    <script src="form.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</body>
+</html>
