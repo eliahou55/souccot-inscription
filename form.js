@@ -1,6 +1,6 @@
 // Configuration
 const CONFIG = {
-    GOOGLE_APPS_SCRIPT_URL: 'YOUR_SOUCCOT_GOOGLE_APPS_SCRIPT_URL',
+    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwGP2mPfs7V8ZdPcpfLgo0F1TLg3SF2qUhRWeRa7A3jyCnpceVOPT6RTeXoZwSsBeQC/exec',
     EMAIL_SERVICE_URL: 'YOUR_SOUCCOT_EMAIL_SERVICE_URL',
 };
 
@@ -14,6 +14,7 @@ const PRICES = {
 // État du formulaire
 let familyMemberCount = 4;
 let lastSubmittedData = null;
+let lastAutoNom = '';
 
 // Initialisations
 document.addEventListener('DOMContentLoaded', function() {
@@ -61,6 +62,7 @@ function addFamilyRow(shouldCalculate = true) {
     const contactNom = document.getElementById('nomContact').value.trim();
     if (contactNom) {
         row.querySelector('.family-nom').value = contactNom;
+        lastAutoNom = contactNom;
     }
 
     const tarifDisplay = row.querySelector('.family-tarif-display');
@@ -230,9 +232,15 @@ function initializeEventListeners() {
 
     document.getElementById('nomContact').addEventListener('input', function() {
         const newNom = this.value.trim();
+        // Ne recopie que sur les lignes pas encore touchées à la main (vides ou encore
+        // égales au dernier nom auto-rempli), pour ne jamais écraser un nom de famille
+        // saisi manuellement (ex: membre avec un nom différent du contact).
         document.querySelectorAll('#familyTableBody .family-nom').forEach(input => {
-            input.value = newNom;
+            if (input.value.trim() === '' || input.value === lastAutoNom) {
+                input.value = newNom;
+            }
         });
+        lastAutoNom = newNom;
     });
 }
 
