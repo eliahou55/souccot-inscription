@@ -1,7 +1,7 @@
 // Configuration
 const CONFIG = {
     GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwGP2mPfs7V8ZdPcpfLgo0F1TLg3SF2qUhRWeRa7A3jyCnpceVOPT6RTeXoZwSsBeQC/exec',
-    EMAIL_SERVICE_URL: 'YOUR_SOUCCOT_EMAIL_SERVICE_URL',
+    EMAIL_SERVICE_URL: 'https://souccot.netlify.app/.netlify/functions',
 };
 
 // Tarifs
