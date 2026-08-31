@@ -570,8 +570,6 @@ function generateDevisPDF(formData, download = true) {
     const conds = [
         'Annulation : Plus de 30 jours avant le depart - votre acompte sera retenu.',
         '15 jours avant le depart : 50% de la somme sera retenu.',
-        "Le montant de l'adhesion a Loisirel est inclus dans le prix du sejour.",
-        "Il est conseille de souscrire une assurance rapatriement ou de verifier les conditions de votre CB VISA OU MASTERCARD.",
         "Tout voyage interrompu ou abrege du fait du participant pour quelque cause que ce soit, ne donnera lieu a aucun remboursement."
     ];
     conds.forEach(c => {
