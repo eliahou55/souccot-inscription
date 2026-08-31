@@ -27,7 +27,7 @@ exports.handler = async (event) => {
     }
 
     const RESEND_API_KEY  = process.env.RESEND_API_KEY;
-    const FROM_EMAIL      = process.env.FROM_EMAIL      || 'noreply@socialword.shop';
+    const FROM_EMAIL      = process.env.FROM_EMAIL      || 'noreply@loisirel.online';
     const ORGANIZER_EMAIL = process.env.ORGANIZER_EMAIL || 'loisirel@hotmail.fr';
     const finalTotal = (formData.remiseAmount > 0) ? formData.totalApresRemise : formData.totalEUR;
     const attachment = pdfBase64

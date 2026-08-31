@@ -19,7 +19,7 @@ app.post('/send-email', async (req, res) => {
         return res.status(400).json({ success: false, error: 'Email manquant' });
     }
 
-    const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@socialword.shop';
+    const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@loisirel.online';
     const ORGANIZER_EMAIL = process.env.ORGANIZER_EMAIL || 'loisirel@hotmail.fr';
 
     const finalTotal = (formData.remiseAmount > 0) ? formData.totalApresRemise : formData.totalEUR;
