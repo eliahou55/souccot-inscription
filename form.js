@@ -502,9 +502,10 @@ function generateDevisPDF(formData, download = true) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
-    const primaryColor   = [140, 61, 12];
-    const secondaryColor = [194, 65, 12];
+    const primaryColor   = [26, 107, 47];
+    const secondaryColor = [46, 139, 61];
     const greenColor     = [39, 174, 96];
+    const goldColor      = [242, 183, 5];
 
     let y = 10;
 
@@ -535,7 +536,7 @@ function generateDevisPDF(formData, download = true) {
     y = 29;
 
     // Badge PENSION COMPLÈTE
-    doc.setFillColor(212, 175, 55);
+    doc.setFillColor(...goldColor);
     doc.roundedRect(75, y - 5, 60, 7, 2, 2, 'F');
     doc.setFont(undefined, 'bold');
     doc.setTextColor(58, 42, 0);
