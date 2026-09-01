@@ -528,6 +528,11 @@ function generateDevisPDF(formData, download = true) {
     // ── HEADER ──────────────────────────────────────────────
     doc.setFillColor(...primaryColor);
     doc.rect(0, 0, 210, 24, 'F');
+    if (typeof LOGO_BASE64 !== 'undefined') {
+        doc.setFillColor(255, 255, 255);
+        doc.roundedRect(6, 4, 26.5, 16, 2, 2, 'F');
+        doc.addImage(LOGO_BASE64, 'PNG', 7.3, 6.7, 24, 13.6);
+    }
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(18);
     doc.text("CONFIRMATION D'INSCRIPTION", 105, 10, { align: 'center' });
