@@ -83,10 +83,11 @@ function buildClientHTML(data, finalTotal) {
     </table>
     <div style="background:#fff8e1;border-left:4px solid #f59e0b;padding:15px;margin-top:20px;border-radius:4px;">
       <strong>Reglement par virement :</strong><br>
+      <strong style="color:#8c3d0c;">Titulaire du compte : TOVEL</strong><br>
       IBAN : FR76 1820 6002 1365 0425 2422 502<br>BIC : AGRFRPP882<br>
       Libelle : <strong>${data.nomContact} ${data.prenomContact} - Souccot 2026</strong>
     </div>
-    <p style="margin-top:20px;color:#555;">Pour toute question : <a href="mailto:loisirel@hotmail.fr">loisirel@hotmail.fr</a></p>
+    <p style="margin-top:20px;color:#555;">Pour toute question : téléphone / WhatsApp au <strong>06 12 20 28 61</strong> ou email <a href="mailto:loisirel@hotmail.fr">loisirel@hotmail.fr</a></p>
   </td></tr>
   <tr><td style="background:#fbf0e6;padding:15px;text-align:center;font-size:12px;color:#888;">
     Millennium Hotel Paris Charles de Gaulle — 2 Allee du Verger, 95700 Roissy-en-France

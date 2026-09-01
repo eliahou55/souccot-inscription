@@ -2,7 +2,7 @@
 
 ## 📋 Vue d'ensemble
 
-Ce projet est un bulletin d'inscription en ligne pour le séjour de Souccot 2026 (du vendredi 25 au dimanche 27 septembre 2026) à l'Hôtel Millenium Charles de Gaulle. Les inscriptions sont automatiquement sauvegardées dans un Google Sheet.
+Ce projet est un bulletin d'inscription en ligne pour le séjour de Souccot 2026 (du vendredi 25 septembre (au soir) au lundi 28 septembre 2026 (11h00)) à l'Hôtel Millenium Charles de Gaulle. Les inscriptions sont automatiquement sauvegardées dans un Google Sheet.
 
 **Caractéristiques:**
 - ✅ Formulaire responsive et professionnel
@@ -270,10 +270,14 @@ Millennium Hotel Paris Charles de Gaulle
 2 Allée du Verger
 95700 Roissy-en-France, France
 
-Séjour: du vendredi 25 au dimanche 27 septembre 2026
+Séjour: du vendredi 25 septembre (au soir) au lundi 28 septembre 2026 (11h00)
 
+Titulaire du compte: TOVEL
 IBAN: FR76 1820 6002 1365 0425 2422 502
 Code AGRFRPP882
+
+Contact: Téléphone/WhatsApp 06 12 20 28 61 - loisirel@hotmail.fr
+Code espace organisateur (sélection de chambres): 2861
 ```
 
 ---

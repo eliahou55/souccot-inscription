@@ -106,12 +106,13 @@ function buildClientEmail(data, finalTotal) {
 
         <div style="background:#fff8e1;border-left:4px solid #f59e0b;padding:15px;margin-top:20px;border-radius:4px;">
           <strong>Règlement par virement :</strong><br>
+          <strong style="color:#8c3d0c;">Titulaire du compte : TOVEL</strong><br>
           IBAN : FR76 1820 6002 1365 0425 2422 502<br>
           BIC : AGRFRPP882<br>
           Libellé : <strong>${data.nomContact} ${data.prenomContact} - Souccot 2026</strong>
         </div>
 
-        <p style="margin-top:20px;color:#555;">Pour toute question, contactez-nous à <a href="mailto:loisirel@hotmail.fr">loisirel@hotmail.fr</a>.</p>
+        <p style="margin-top:20px;color:#555;">Pour toute question, contactez-nous par téléphone / WhatsApp au <strong>06 12 20 28 61</strong> ou par email à <a href="mailto:loisirel@hotmail.fr">loisirel@hotmail.fr</a>.</p>
       </td>
     </tr>
     <tr>

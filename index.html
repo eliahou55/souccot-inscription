@@ -12,7 +12,7 @@
             <h1>LOISIREL SOUCCOT 2026</h1>
             <h2>HÔTEL MILLENIUM CHARLES DE GAULLE</h2>
             <p class="subtitle">Bulletin d'Inscription - Séjour de Souccot</p>
-            <p class="dates">Du vendredi 25 au dimanche 27 septembre 2026</p>
+            <p class="dates">Du vendredi 25 septembre (au soir) au lundi 28 septembre 2026 (11h00)</p>
             <p class="hotel">Millennium Hotel Paris Charles de Gaulle - Roissy-en-France</p>
         </header>
 
@@ -34,7 +34,7 @@
 
                     <div class="form-group">
                         <label for="portable">Téléphone</label>
-                        <input type="tel" id="portable" name="portable" placeholder="06 12 34 56 78">
+                        <input type="tel" id="portable" name="portable">
                     </div>
 
                     <div class="form-group">
@@ -155,6 +155,88 @@
                 </div>
             </section>
 
+            <!-- Section 7: Espace Organisateur (verrouillé par code) -->
+            <section class="form-section organizer-section">
+                <h3 class="organizer-warning">⚠️ À NE REMPLIR QUE PAR L'ORGANISATEUR</h3>
+
+                <div id="organizerLocked" class="organizer-lock">
+                    <p class="section-info">Section verrouillée — saisir le code pour attribuer des chambres</p>
+                    <div class="pin-dots">
+                        <span class="pin-dot" data-dot="0"></span>
+                        <span class="pin-dot" data-dot="1"></span>
+                        <span class="pin-dot" data-dot="2"></span>
+                        <span class="pin-dot" data-dot="3"></span>
+                    </div>
+                    <div class="pin-keypad">
+                        <button type="button" class="pin-key" data-digit="1">1</button>
+                        <button type="button" class="pin-key" data-digit="2">2</button>
+                        <button type="button" class="pin-key" data-digit="3">3</button>
+                        <button type="button" class="pin-key" data-digit="4">4</button>
+                        <button type="button" class="pin-key" data-digit="5">5</button>
+                        <button type="button" class="pin-key" data-digit="6">6</button>
+                        <button type="button" class="pin-key" data-digit="7">7</button>
+                        <button type="button" class="pin-key" data-digit="8">8</button>
+                        <button type="button" class="pin-key" data-digit="9">9</button>
+                        <button type="button" class="pin-key pin-key-clear" id="pinClear">C</button>
+                        <button type="button" class="pin-key" data-digit="0">0</button>
+                        <button type="button" class="pin-key pin-key-back" id="pinBack">⌫</button>
+                    </div>
+                    <p id="pinError" class="pin-error" style="display:none;">Code incorrect</p>
+                </div>
+
+                <div id="organizerUnlocked" class="rooms-grid" style="display:none;">
+                    <div class="room-selector">
+                        <div class="room-header"><h4>Chambre Standard Double</h4></div>
+                        <div class="room-input-group">
+                            <button type="button" class="btn-minus" data-room="stdDouble">−</button>
+                            <input type="number" id="roomStdDouble" value="0" min="0" class="room-input" readonly>
+                            <button type="button" class="btn-plus" data-room="stdDouble">+</button>
+                        </div>
+                    </div>
+                    <div class="room-selector">
+                        <div class="room-header"><h4>Chambre Standard Lits Jumeaux (Twin)</h4></div>
+                        <div class="room-input-group">
+                            <button type="button" class="btn-minus" data-room="stdTwin">−</button>
+                            <input type="number" id="roomStdTwin" value="0" min="0" class="room-input" readonly>
+                            <button type="button" class="btn-plus" data-room="stdTwin">+</button>
+                        </div>
+                    </div>
+                    <div class="room-selector">
+                        <div class="room-header"><h4>Chambre Club Double / Queen</h4></div>
+                        <div class="room-input-group">
+                            <button type="button" class="btn-minus" data-room="clubDouble">−</button>
+                            <input type="number" id="roomClubDouble" value="0" min="0" class="room-input" readonly>
+                            <button type="button" class="btn-plus" data-room="clubDouble">+</button>
+                        </div>
+                    </div>
+                    <div class="room-selector">
+                        <div class="room-header"><h4>Chambre Club Lits Jumeaux</h4></div>
+                        <div class="room-input-group">
+                            <button type="button" class="btn-minus" data-room="clubTwin">−</button>
+                            <input type="number" id="roomClubTwin" value="0" min="0" class="room-input" readonly>
+                            <button type="button" class="btn-plus" data-room="clubTwin">+</button>
+                        </div>
+                    </div>
+                    <div class="room-selector">
+                        <div class="room-header"><h4>Chambre Supérieure</h4></div>
+                        <div class="room-input-group">
+                            <button type="button" class="btn-minus" data-room="superieure">−</button>
+                            <input type="number" id="roomSuperieure" value="0" min="0" class="room-input" readonly>
+                            <button type="button" class="btn-plus" data-room="superieure">+</button>
+                        </div>
+                    </div>
+                    <div class="room-selector">
+                        <div class="room-header"><h4>Suite Studio / Suite Junior</h4></div>
+                        <div class="room-input-group">
+                            <button type="button" class="btn-minus" data-room="suite">−</button>
+                            <input type="number" id="roomSuite" value="0" min="0" class="room-input" readonly>
+                            <button type="button" class="btn-plus" data-room="suite">+</button>
+                        </div>
+                    </div>
+                    <p class="section-info" style="grid-column:1/-1;">Ces chambres sont informatives uniquement — elles n'affectent pas le prix du séjour.</p>
+                </div>
+            </section>
+
             <!-- Boutons -->
             <div class="form-actions">
                 <button type="submit" class="btn-submit">Soumettre l'Inscription</button>
@@ -168,7 +250,8 @@
         <footer>
             <p>ADRESSE HÔTEL: Millennium Hotel Paris Charles de Gaulle</p>
             <p>2 Allée du Verger, 95700 Roissy-en-France, France</p>
-            <p>IBAN LOISIREL: FR76 1820 6002 1365 0425 2422 502 - AGRFRPP882</p>
+            <p><strong>Titulaire du compte : TOVEL</strong></p>
+            <p>IBAN: FR76 1820 6002 1365 0425 2422 502 - AGRFRPP882</p>
         </footer>
     </div>
 

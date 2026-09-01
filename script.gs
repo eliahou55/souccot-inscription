@@ -16,7 +16,9 @@ const HEADERS_INSCRIPTIONS = [
   "Reduction (€)",
   "Total", "Acompte", "Solde Restant",
   "Total avant remise (€)", "Réduction (%)",
-  "Paiement Intégral"
+  "Paiement Intégral",
+  "Chambre Standard Double", "Chambre Standard Twin", "Chambre Club Double/Queen",
+  "Chambre Club Twin", "Chambre Supérieure", "Suite Studio/Junior"
 ];
 
 // ============================================================
@@ -75,6 +77,7 @@ function addDataToSheets(data) {
     ).join(' | ');
 
     const finalTotal = (data.remiseAmount > 0) ? data.remiseAmount : data.totalEUR;
+    const rooms = data.roomsOrganisateur || {};
 
     const rowInscription = [
       inscriptionId,
@@ -98,7 +101,13 @@ function addDataToSheets(data) {
       data.soldeEUR || 0,
       data.totalEUR || 0,
       data.remisePourcentage || 0,
-      data.paiementIntegral ? 'Oui' : 'Non'
+      data.paiementIntegral ? 'Oui' : 'Non',
+      rooms.stdDouble || 0,
+      rooms.stdTwin || 0,
+      rooms.clubDouble || 0,
+      rooms.clubTwin || 0,
+      rooms.superieure || 0,
+      rooms.suite || 0
     ];
 
     sheet1.appendRow(rowInscription);
@@ -173,6 +182,7 @@ function testDoPost() {
     acomptEUR: 795,
     soldeEUR: 795,
     paiementIntegral: false,
+    roomsOrganisateur: { stdDouble: 1, stdTwin: 0, clubDouble: 1, clubTwin: 0, superieure: 0, suite: 0 },
     dateSoumission: new Date().toLocaleDateString('fr-FR'),
     timestamp: new Date().toISOString()
   };

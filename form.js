@@ -16,11 +16,24 @@ let familyMemberCount = 4;
 let lastSubmittedData = null;
 let lastAutoNom = '';
 
+const ORGANIZER_CODE = '2861';
+const ROOM_TYPES = ['stdDouble', 'stdTwin', 'clubDouble', 'clubTwin', 'superieure', 'suite'];
+const ROOM_INPUT_IDS = {
+    stdDouble: 'roomStdDouble',
+    stdTwin: 'roomStdTwin',
+    clubDouble: 'roomClubDouble',
+    clubTwin: 'roomClubTwin',
+    superieure: 'roomSuperieure',
+    suite: 'roomSuite'
+};
+
 // Initialisations
 document.addEventListener('DOMContentLoaded', function() {
     initializeFamily();
     initializeRemise();
     initializeEventListeners();
+    initializeOrganizerLock();
+    initializeOrganizerRooms();
     calculateTotal();
 });
 
@@ -133,6 +146,77 @@ function initializeRemise() {
     remiseAmount.addEventListener('input', calculateTotal);
 
     document.getElementById('paiementIntegral').addEventListener('change', calculateTotal);
+}
+
+// ===== ESPACE ORGANISATEUR (verrouillé par code) =====
+function initializeOrganizerLock() {
+    let enteredCode = '';
+    const dots = document.querySelectorAll('.pin-dot');
+    const pinError = document.getElementById('pinError');
+    const lockedView = document.getElementById('organizerLocked');
+    const unlockedView = document.getElementById('organizerUnlocked');
+
+    function updateDots() {
+        dots.forEach((dot, i) => dot.classList.toggle('filled', i < enteredCode.length));
+    }
+
+    function resetCode() {
+        enteredCode = '';
+        updateDots();
+    }
+
+    function tryUnlock() {
+        if (enteredCode === ORGANIZER_CODE) {
+            pinError.style.display = 'none';
+            lockedView.style.display = 'none';
+            unlockedView.style.display = 'grid';
+        } else {
+            pinError.style.display = 'block';
+            setTimeout(() => {
+                resetCode();
+                pinError.style.display = 'none';
+            }, 700);
+        }
+    }
+
+    document.querySelectorAll('.pin-key[data-digit]').forEach(key => {
+        key.addEventListener('click', function() {
+            if (enteredCode.length >= 4) return;
+            enteredCode += this.dataset.digit;
+            updateDots();
+            if (enteredCode.length === 4) {
+                tryUnlock();
+            }
+        });
+    });
+
+    document.getElementById('pinBack').addEventListener('click', function() {
+        enteredCode = enteredCode.slice(0, -1);
+        updateDots();
+    });
+
+    document.getElementById('pinClear').addEventListener('click', resetCode);
+}
+
+function initializeOrganizerRooms() {
+    ROOM_TYPES.forEach(room => {
+        const input = document.getElementById(ROOM_INPUT_IDS[room]);
+        document.querySelectorAll(`[data-room="${room}"]`).forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const delta = this.classList.contains('btn-plus') ? 1 : -1;
+                input.value = Math.max(0, (parseInt(input.value) || 0) + delta);
+            });
+        });
+    });
+}
+
+function getOrganizerRooms() {
+    const rooms = {};
+    ROOM_TYPES.forEach(room => {
+        rooms[room] = parseInt(document.getElementById(ROOM_INPUT_IDS[room]).value) || 0;
+    });
+    return rooms;
 }
 
 // ===== HELPERS COMPTAGE FAMILLE =====
@@ -334,6 +418,7 @@ function getFormData() {
         tarifChambresAdultes: tarifAdulte,
         tarifChambresEnfants: tarifEnfant,
         tarifBebes: tarifBebe,
+        roomsOrganisateur: getOrganizerRooms(),
         notes: document.getElementById('notes').value.trim() || '',
         paiementIntegral: document.getElementById('paiementIntegral').checked,
         remiseAppliquee: remiseAmount > 0 ? 'Oui' : 'Non',
@@ -391,6 +476,7 @@ async function handleFormSubmit(e) {
                 <button type="button" id="newInscriptionBtn" class="btn-reset" style="margin:0;">🆕 Nouvelle inscription</button>
             </div>
             <p style="margin:8px 0 0;font-size:0.88em;opacity:0.85;">Vous pouvez corriger le formulaire et le re-soumettre si nécessaire.</p>
+            <p style="margin:8px 0 0;font-size:0.88em;opacity:0.85;">💡 Vous ne recevez pas l'email ? Pensez à vérifier vos spams / courriers indésirables.</p>
         `;
         statusMessage.className = 'status-message success';
         submitBtn.disabled = false;
@@ -561,6 +647,9 @@ function generateDevisPDF(formData, download = true) {
     // ── RÈGLEMENT ────────────────────────────────────────────
     sectionHead('REGLEMENT');
     doc.setFontSize(8.5);
+    doc.setFont(undefined, 'bold');
+    doc.text('Titulaire du compte : TOVEL', 10, y); y += 5;
+    doc.setFont(undefined, 'normal');
     doc.text('IBAN : FR76 1820 6002 1365 0425 2422 502   |   BIC : AGRFRPP882', 10, y); y += 5;
     doc.text('Libelle du virement : Nom Prenom - Souccot 2026', 10, y); y += 7;
 
@@ -578,6 +667,12 @@ function generateDevisPDF(formData, download = true) {
         doc.text(lines, 10, y);
         y += lines.length * 3.8 + 0.5;
     });
+    y += 3;
+
+    // ── CONTACT ────────────────────────────────────────────
+    sectionHead('QUESTIONS / INFORMATIONS');
+    doc.setFontSize(8.5);
+    doc.text('Téléphone / WhatsApp : 06 12 20 28 61   |   Email : loisirel@hotmail.fr', 10, y); y += 5;
 
     // ── FOOTER — fixé au bas de la page ──────────────────────
     y = Math.max(y + 4, 270);
