@@ -73,6 +73,7 @@ function buildClientHTML(data, finalTotal) {
     <h2 style="color:#8c3d0c;margin-top:0;">Confirmation d'inscription</h2>
     <p>Bonjour <strong>${data.prenomContact} ${data.nomContact}</strong>,</p>
     <p>Nous avons bien recu votre inscription pour le sejour de Souccot 2026. Votre devis complet est joint en piece attachee.</p>
+    <p style="display:inline-block;background:#d4af37;color:#3a2a00;font-weight:800;padding:6px 16px;border-radius:999px;font-size:13px;">🍽️ Séjour en PENSION COMPLÈTE</p>
     <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;font-size:14px;">
       <tr style="background:#fbf0e6;"><td style="border:1px solid #ddd;"><strong>Contact</strong></td><td style="border:1px solid #ddd;">${data.prenomContact} ${data.nomContact} — ${data.portable || 'N/A'}</td></tr>
       <tr><td style="border:1px solid #ddd;"><strong>Personnes</strong></td><td style="border:1px solid #ddd;">${data.nombrePersonnes}</td></tr>

@@ -534,6 +534,17 @@ function generateDevisPDF(formData, download = true) {
     doc.text('LOISIREL SOUCCOT 2026 - HÔTEL MILLENIUM CDG', 105, 18, { align: 'center' });
     y = 29;
 
+    // Badge PENSION COMPLÈTE
+    doc.setFillColor(212, 175, 55);
+    doc.roundedRect(75, y - 5, 60, 7, 2, 2, 'F');
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(58, 42, 0);
+    doc.setFontSize(9);
+    doc.text('PENSION COMPLÈTE', 105, y, { align: 'center' });
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(0, 0, 0);
+    y += 9;
+
     // ── INFORMATIONS DE CONTACT ──────────────────────────────
     sectionHead('INFORMATIONS DE CONTACT');
     doc.setFontSize(9);
@@ -557,7 +568,7 @@ function generateDevisPDF(formData, download = true) {
     y += 4;
 
     // ── TARIF PAR PERSONNE ───────────────────────────────────
-    sectionHead('TARIF PAR PERSONNE (SÉJOUR 3 JOURS)');
+    sectionHead('TARIF PAR PERSONNE (PENSION COMPLÈTE)');
     doc.setFontSize(8.5);
     if ((formData.chambresAdultes || 0) > 0) {
         doc.text('Adultes : ' + formData.chambresAdultes + ' x 520€ = ' + formData.tarifChambresAdultes + '€', 10, y); y += 5;

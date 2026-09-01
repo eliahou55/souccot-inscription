@@ -83,6 +83,18 @@ header p {
     margin-top: 15px;
 }
 
+.pension-badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 16px;
+    background: var(--accent-color);
+    color: #3a2a00;
+    font-weight: 800;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+    border-radius: 999px;
+}
+
 /* Form Container */
 .form-container {
     padding: 30px;

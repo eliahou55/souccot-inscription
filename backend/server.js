@@ -75,6 +75,8 @@ function buildClientEmail(data, finalTotal) {
         <p>Bonjour <strong>${data.prenomContact} ${data.nomContact}</strong>,</p>
         <p>Nous avons bien reçu votre inscription pour le séjour de Souccot 2026. Votre devis complet est joint en pièce attachée.</p>
 
+        <p style="display:inline-block;background:#d4af37;color:#3a2a00;font-weight:800;padding:6px 16px;border-radius:999px;font-size:13px;">🍽️ Séjour en PENSION COMPLÈTE</p>
+
         <h3 style="color:#8c3d0c;border-bottom:2px solid #8c3d0c;padding-bottom:6px;">Récapitulatif</h3>
         <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;font-size:14px;">
           <tr style="background:#fbf0e6;">
